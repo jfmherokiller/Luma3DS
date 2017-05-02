@@ -53,7 +53,9 @@ _start:
     fsRedir:
         stmfd   sp!, {r0-r12, lr}
         ldrb    r12, [r1]
-        cmp     r12, #0x72 ; 'r', should include "rom:", "rom2:" and "rex:"
+        mov     r1,  #0x32
+        add     r1,  #0x40
+        cmp     r12, r1 ; 'r', should include "rom:", "rom2:" and "rex:"
         ldrne   r11, [pc, #updateRomFsStart-.-8]
         cmpne   r12, r11
         bne 	endRedir
